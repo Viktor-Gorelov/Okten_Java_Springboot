@@ -1,53 +1,43 @@
 package com.example.Okten_Java_Springboot.controller;
 
-import com.example.Okten_Java_Springboot.entity.Car;
-import com.example.Okten_Java_Springboot.repository.CarRepository;
+import com.example.Okten_Java_Springboot.dto.CarDTO;
+import com.example.Okten_Java_Springboot.dto.CarUpdateDTO;
+import com.example.Okten_Java_Springboot.services.CarService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/cars")
 public class CarController {
-    private final CarRepository carRepository;
+    private final CarService carService;
 
-    public CarController(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    @GetMapping()
+    public ResponseEntity<List<CarDTO>> getAllCars() {
+        return ResponseEntity.ok(carService.getAllCars());
     }
-    @GetMapping("/cars")
-    public ResponseEntity<List<Car>> getAllCars(@RequestParam(required = false) Integer minEnginePower,
-                                                @RequestParam(required = false) Integer maxEnginePower){
-        if (minEnginePower != null && maxEnginePower != null) {
-            return ResponseEntity.ok(carRepository.findByEnginePowerBetween(minEnginePower, maxEnginePower));
-        }
-        return ResponseEntity.ok(carRepository.findAll());
-    }
-    @GetMapping("/cars/{carId}")
-    public ResponseEntity<Car> getCar(@PathVariable Long carId) {
-        return ResponseEntity.of(carRepository.findById(carId));
+    @GetMapping("/{carId}")
+    public ResponseEntity<CarDTO> getCar(@PathVariable Long carId) {
+        return ResponseEntity.ok(carService.getCarById(carId));
     }
 
-    @PostMapping("/cars")
-    public ResponseEntity<Car> createCar(@RequestBody Car car){
-        return ResponseEntity.ok(carRepository.save(car));
+    @PostMapping()
+    public ResponseEntity<CarDTO> createCar(@RequestBody @Valid CarDTO car){
+        return ResponseEntity.ok(carService.createCar(car));
     }
 
-    @PutMapping("/cars/{carId}")
-    public ResponseEntity<Car> updateCar(@PathVariable Long carId, @RequestBody Car carUpdateWith){
-        return  ResponseEntity.of(carRepository
-                .findById(carId)
-                .map(existingCar ->{
-                    existingCar.setModel(carUpdateWith.getModel());
-                    existingCar.setEnginePower(carUpdateWith.getEnginePower());
-                    return carRepository.save(existingCar);
-                }));
+    @PutMapping("/{carId}")
+    public ResponseEntity<CarDTO> updateCar(@PathVariable Long carId, @RequestBody CarUpdateDTO carUpdateDTO){
+        return ResponseEntity.ok(carService.updateCar(carId, carUpdateDTO));
 
     }
-    @DeleteMapping("/cars/{carId}")
-    public ResponseEntity<Car> deleteCar(@PathVariable Long carId){
-        carRepository.deleteById(carId);
+    @DeleteMapping("/{carId}")
+    public ResponseEntity<Void> deleteCar(@PathVariable Long carId){
+        carService.deleteCarById(carId);
         return ResponseEntity.noContent().build();
     }
 }

@@ -13,4 +13,5 @@ public class Car {
     private String model;
     private int enginePower;
     private Integer torque;
+    private String fuelType;
 }
