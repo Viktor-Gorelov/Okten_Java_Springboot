@@ -1,6 +1,6 @@
 package com.example.Okten_Java_Springboot.mapper;
 
-import com.example.Okten_Java_Springboot.dto.CarDTO;
+import com.example.Okten_Java_Springboot.dto.Car.CarDTO;
 import com.example.Okten_Java_Springboot.entity.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -16,7 +16,7 @@ public class Car {
     private int enginePower;
     private Integer torque;
     private String fuelType;
-    private LocalDateTime lastMaintenanceTimestamp; // Нове поле
+    private LocalDateTime lastMaintenanceTimestamp;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")

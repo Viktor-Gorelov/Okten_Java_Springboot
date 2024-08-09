@@ -1,4 +1,4 @@
-package com.example.Okten_Java_Springboot.dto;
+package com.example.Okten_Java_Springboot.dto.Car;
 
 import com.example.Okten_Java_Springboot.annotation.ValidFuelType;
 import com.example.Okten_Java_Springboot.entity.Owner;

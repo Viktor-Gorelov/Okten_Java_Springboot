@@ -9,3 +9,19 @@ spring:
     mongodb:
       uri: "mongodb+srv://admin:admin@cluster0.azzfu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       database: "maintenance-base"
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${mail-sender}
+    password: ${mail-password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+mail:
+  sender:
+    username: ${mail-sender}

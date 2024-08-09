@@ -1,8 +1,7 @@
 package com.example.Okten_Java_Springboot.controller;
 
-import com.example.Okten_Java_Springboot.dto.OwnerDTO;
-import com.example.Okten_Java_Springboot.dto.OwnerUpdateDTO;
-import com.example.Okten_Java_Springboot.entity.Owner;
+import com.example.Okten_Java_Springboot.dto.Owner.OwnerDTO;
+import com.example.Okten_Java_Springboot.dto.Owner.OwnerUpdateDTO;
 import com.example.Okten_Java_Springboot.services.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

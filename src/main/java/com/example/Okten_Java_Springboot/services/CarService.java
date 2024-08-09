@@ -1,14 +1,12 @@
 package com.example.Okten_Java_Springboot.services;
 
-import com.example.Okten_Java_Springboot.dto.CarDTO;
-import com.example.Okten_Java_Springboot.dto.CarUpdateDTO;
+import com.example.Okten_Java_Springboot.dto.Car.CarDTO;
+import com.example.Okten_Java_Springboot.dto.Car.CarUpdateDTO;
 import com.example.Okten_Java_Springboot.entity.Car;
-import com.example.Okten_Java_Springboot.entity.Owner;
 import com.example.Okten_Java_Springboot.mapper.CarMapper;
 import com.example.Okten_Java_Springboot.repository.CarRepository;
 import com.example.Okten_Java_Springboot.repository.OwnerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

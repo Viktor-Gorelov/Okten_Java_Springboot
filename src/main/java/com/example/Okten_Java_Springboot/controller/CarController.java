@@ -1,11 +1,9 @@
 package com.example.Okten_Java_Springboot.controller;
 
-import com.example.Okten_Java_Springboot.dto.CarCreateDTO;
-import com.example.Okten_Java_Springboot.dto.CarDTO;
-import com.example.Okten_Java_Springboot.dto.CarUpdateDTO;
-import com.example.Okten_Java_Springboot.dto.OwnerDTO;
-import com.example.Okten_Java_Springboot.entity.Owner;
-import com.example.Okten_Java_Springboot.repository.OwnerRepository;
+import com.example.Okten_Java_Springboot.dto.Car.CarCreateDTO;
+import com.example.Okten_Java_Springboot.dto.Car.CarDTO;
+import com.example.Okten_Java_Springboot.dto.Car.CarUpdateDTO;
+import com.example.Okten_Java_Springboot.dto.Owner.OwnerDTO;
 import com.example.Okten_Java_Springboot.services.CarService;
 import com.example.Okten_Java_Springboot.services.OwnerService;
 import jakarta.validation.Valid;

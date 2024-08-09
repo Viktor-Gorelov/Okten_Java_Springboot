@@ -1,8 +1,7 @@
 package com.example.Okten_Java_Springboot.mapper;
 
-import com.example.Okten_Java_Springboot.dto.OwnerDTO;
+import com.example.Okten_Java_Springboot.dto.Owner.OwnerDTO;
 import com.example.Okten_Java_Springboot.entity.Owner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

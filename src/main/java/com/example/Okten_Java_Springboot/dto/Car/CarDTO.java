@@ -1,9 +1,7 @@
-package com.example.Okten_Java_Springboot.dto;
+package com.example.Okten_Java_Springboot.dto.Car;
 
 import com.example.Okten_Java_Springboot.annotation.ValidFuelType;
-import com.example.Okten_Java_Springboot.entity.Owner;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.example.Okten_Java_Springboot.dto.Owner.OwnerDTO;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -26,7 +24,7 @@ public class CarDTO {
     @ValidFuelType
     private String fuelType;
 
-    private LocalDateTime lastMaintenanceTimestamp; // Нове поле
+    private LocalDateTime lastMaintenanceTimestamp;
 
     private OwnerDTO ownerDTO;
 }
