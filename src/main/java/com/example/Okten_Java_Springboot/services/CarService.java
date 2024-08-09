@@ -47,16 +47,6 @@ public class CarService {
             car.setEnginePower(carUpdateDTO.getEnginePower());
             car.setTorque(carUpdateDTO.getTorque());
             car.setFuelType(carUpdateDTO.getFuelType());
-            if(carUpdateDTO.getOwner() != null){
-                String username = carUpdateDTO.getOwner().getUsername();
-                Owner owner = ownerRepository.findByUsername(username);
-                if(owner != null){
-                    carUpdateDTO.setOwner(owner);
-                    car.setLastMaintenanceTimestamp(carUpdateDTO.getLastMaintenanceTimestamp());
-                    Car savedCar = carRepository.save(car);
-                    return carMapper.mapToDTO(savedCar);
-                }
-            }
         Car savedCar = carRepository.save(car);
         return carMapper.mapToDTO(savedCar);
     }

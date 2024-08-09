@@ -1,10 +1,13 @@
 package com.example.Okten_Java_Springboot.controller;
 
+import com.example.Okten_Java_Springboot.dto.CarCreateDTO;
 import com.example.Okten_Java_Springboot.dto.CarDTO;
 import com.example.Okten_Java_Springboot.dto.CarUpdateDTO;
+import com.example.Okten_Java_Springboot.dto.OwnerDTO;
 import com.example.Okten_Java_Springboot.entity.Owner;
 import com.example.Okten_Java_Springboot.repository.OwnerRepository;
 import com.example.Okten_Java_Springboot.services.CarService;
+import com.example.Okten_Java_Springboot.services.OwnerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +21,7 @@ import java.util.List;
 @RequestMapping("/cars")
 public class CarController {
     private final CarService carService;
-    private final OwnerRepository ownerRepository;
+    private final OwnerService ownerService;
 
     @GetMapping()
     public ResponseEntity<List<CarDTO>> getAllCars() {
@@ -30,24 +33,25 @@ public class CarController {
     }
 
     @PostMapping()
-    public ResponseEntity<CarDTO> createCar(@RequestBody @Valid CarDTO car){
-        if (car.getOwner() != null) {
-            String username = car.getOwner().getUsername();
-            Owner owner = ownerRepository.findByUsername(username);
-            if (owner == null) {
-                return ResponseEntity.status(400).body(null);
-            }
-            car.setOwner(owner);
+    public ResponseEntity<CarDTO> createCar(@RequestBody @Valid CarCreateDTO car) {
+        CarDTO carDTO = CarDTO.builder()
+                .model(car.getModel())
+                .enginePower(car.getEnginePower())
+                .torque(car.getTorque())
+                .fuelType(car.getFuelType())
+                .build();
+        String username = car.getOwnerName();
+        OwnerDTO owner = ownerService.getOwnerByName(username);
+        if (owner == null) {
+            return ResponseEntity.status(400).body(null);
         }
-        car.setLastMaintenanceTimestamp(LocalDateTime.now());
-        return ResponseEntity.ok(carService.createCar(car));
+        carDTO.setOwnerDTO(owner);
+        carDTO.setLastMaintenanceTimestamp(LocalDateTime.now());
+        return ResponseEntity.ok(carService.createCar(carDTO));
     }
 
     @PutMapping("/{carId}")
     public ResponseEntity<CarDTO> updateCar(@PathVariable Long carId, @RequestBody CarUpdateDTO carUpdateDTO){
-        if(carUpdateDTO.getOwner() == null){
-            return ResponseEntity.status(400).body(null);
-        }
         return ResponseEntity.ok(carService.updateCar(carId, carUpdateDTO));
 
     }

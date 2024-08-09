@@ -23,7 +23,7 @@ public class MaintenanceController {
 
     @PostMapping
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance) {
-        maintenance.setDescription("Треба перевірити модель авто");
+        //Todo
         return maintenanceRepository.save(maintenance);
     }
 

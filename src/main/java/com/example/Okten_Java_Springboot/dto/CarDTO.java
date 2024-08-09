@@ -28,7 +28,5 @@ public class CarDTO {
 
     private LocalDateTime lastMaintenanceTimestamp; // Нове поле
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
+    private OwnerDTO ownerDTO;
 }

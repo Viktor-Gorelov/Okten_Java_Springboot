@@ -1,20 +1,17 @@
 package com.example.Okten_Java_Springboot.dto;
 
 import com.example.Okten_Java_Springboot.annotation.ValidFuelType;
-import com.example.Okten_Java_Springboot.entity.Owner;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class CarUpdateDTO {
+public class CarCreateDTO {
     @NotBlank(message = "Model may not be blank")
     private String model;
 
@@ -24,4 +21,6 @@ public class CarUpdateDTO {
     private Integer torque;
     @ValidFuelType
     private String fuelType;
+    @NotNull(message = "Owner name may not be empty")
+    private String ownerName;
 }
