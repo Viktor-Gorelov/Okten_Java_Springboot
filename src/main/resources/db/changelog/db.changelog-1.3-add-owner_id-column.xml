@@ -5,9 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="db/changelog/db.changelog-1.0-create-cars-table.xml" />
-    <include file="db/changelog/db.changelog-1.1-add-torque-column.xml" />
-    <include file="db/changelog/db.changelog-1.2-add-fuelType-column.xml" />
-    <include file="db/changelog/db.changelog-1.3-add-owner_id-column.xml" />
+    <changeSet id="1.3-add-owner_id-column" author="Viktoruin">
+        <addColumn tableName="cars">
+            <column name="last_maintenance_timestamp" type="VARCHAR(255)"/>
+        </addColumn>
+        <addColumn tableName="cars">
+            <column name="owner_id" type="INT"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>
